@@ -2,8 +2,7 @@
 
 ## Задание:
 Решить задачу классификации текста, описать процесс решение задачи, подкрепить графиками, описать дальнейшие возможности по улучшению. Максимальное отведенное время 5 рабочих дней. 
-[Дополнительная информация о задаче](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/task/PBLabs-DescriptionClassificationProject.pdf)
-[Dataset](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/dataset/aboutlabeled.csv)
+[Дополнительная информация о задаче](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/task/PBLabs-DescriptionClassificationProject.pdf), [Dataset](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/dataset/aboutlabeled.csv).
 В задаче не уточняется целевой метрика, предполагаемое количество запросов, требования к оборудованию.
 
 ## Решение:
@@ -24,6 +23,7 @@ df['w'] = (df['w'] - df['w'].min()) / (df['w'].max() - df['w'].min())
 7. В качестве baseline модели был выбран spacy + TfidfVectorizer + RandomForestClassifier, ввиду простоты и низкой склонности к переобучению.
 8. Для подбора гиперпараметров я использовал optuna (TPESampler)
 9. На тестовых данных baseline набрал f1 = 0.516, ROC-AUC = 0.773
+
 [Подробнее](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/01%20Baseline.ipynb)
 
 ### 02 Fine tuning BERT (продолжение Baseline)
@@ -32,7 +32,8 @@ df['w'] = (df['w'] - df['w'].min()) / (df['w'].max() - df['w'].min())
 3. Разработал уникальный алгоритм, предназначен для генерации большого числа наблюдений, соответствующих нашему распределению + детекция выбросов.
 Логика в следующем, добавляем любым удобным способом (translate, BERT mask, …) в тренировочную выборку аугментированные наблюдения и составляем маску aug_mask. Находим аномалии во всей тренировочной выборке, помечаем как outliers_mask. Передаем полученные маски в cross_val_score. В цикле кросс валидации обучение производим на всех данных кроме выбросов [~outliers_mask], валидацию на всех реальных данных [~aug_mask]. С помощью данного алгоритма, улучшил соотношение классов с 0.879569/0.120431 до 0.560555/ 0.439445 в тренеровачных данных. 
 4. На тестовых данных BERT набрал f1 = 0.550, ROC-AUC = 0.852
-5. В виду высокой вычислительной сложности я решил отложить дальнейшую работу в направлении BERT. 
+5. В виду высокой вычислительной сложности я решил отложить дальнейшую работу в направлении BERT.
+
 [Подробнее](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/02%20Fine_Tuning_BERT.ipynb)
 
 
@@ -40,6 +41,7 @@ df['w'] = (df['w'] - df['w'].min()) / (df['w'].max() - df['w'].min())
 1. Feature engineering, feature selection
 2. Добавить multi head в “02 Fine tuning BERT”. Чтобы использовать признаки, полученные в результате feature engineering.
 3. Попробовать в качестве следующей модели XGBoost.
+
 Направлений для дальнейших работы очень много, реализованы только базовые шаги.
 
 ## Развертывание модели
