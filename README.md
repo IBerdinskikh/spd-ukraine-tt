@@ -2,8 +2,9 @@
 
 ## Задание:
 Решить задачу классификации текста, описать процесс решение задачи, подкрепить графиками, описать дальнейшие возможности по улучшению. Максимальное отведенное время 5 рабочих дней. 
-[Дополнительная информация о задаче](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/task/PBLabs-DescriptionClassificationProject.pdf), [Dataset](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/dataset/aboutlabeled.csv).
 В задаче не уточняется целевой метрика, предполагаемое количество запросов, требования к оборудованию.
+
+[Дополнительная информация о задаче](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/task/PBLabs-DescriptionClassificationProject.pdf), [Dataset](https://github.com/IBerdinskikh/spd-ukraine-tt/blob/main/dataset/aboutlabeled.csv).
 
 ## Решение:
 На решение задачи было потрачено 32 рабочих часа, 8 часов я решил оставить на случай критических замечаний и необходимости доработки. 
